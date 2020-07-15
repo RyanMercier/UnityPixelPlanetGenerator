@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
@@ -12,6 +12,10 @@ public class TerrainGenerator : MonoBehaviour
     private int radius;
     private float scale;
     private float surfaceLevel = 0.3f;
+
+    public int maxPlanetSize = 15;
+    public int minPlanetSize = 3;
+    public int resolution = 4;
 
     private PerlinNoise noise;
     private Color32 surfaceColor;
@@ -27,12 +31,12 @@ public class TerrainGenerator : MonoBehaviour
         noiseColor = new Color32((byte)UnityEngine.Random.Range(0, 255), (byte)UnityEngine.Random.Range(0, 255), (byte)UnityEngine.Random.Range(0, 255), 255);
 
         //Generate Terrain Texture
-        int planetSize = UnityEngine.Random.Range(3, 20);
+        int planetSize = UnityEngine.Random.Range(minPlanetSize, maxPlanetSize);
         transform.localScale = new UnityEngine.Vector3(planetSize, planetSize, 1);
 
 
-        width = planetSize * 4 + 1;
-        height = planetSize * 4 + 1;
+        width = planetSize * resolution + 1;
+        height = planetSize * resolution + 1;
         radius = width / 2;
 
         scale = UnityEngine.Random.Range(5, planetSize);
